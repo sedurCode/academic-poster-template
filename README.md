@@ -19,3 +19,6 @@ See it in action `on a real example <https://cpitclaudel.github.io/academic-post
 - ``npm install -g puppeteer``
 - modify poster.jinja2 and poster.less as desired
 - ``make clean && make all``
+
+# Sources
+This repo builds off the original repo [link text itself](https://github.com/cpitclaudel/academic-poster-template) and [this fork](https://github.com/observingClouds/academic-poster-template) that adds the javascript for pdf and png of generation of the poster
