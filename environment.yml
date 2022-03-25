@@ -1,0 +1,8 @@
+name: poster
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jinja2
+  - nodejs
+  - python

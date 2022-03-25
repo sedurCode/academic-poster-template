@@ -1,64 +1,47 @@
-{% extends "poster.jinja2" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Building your own HTML poster — A tutorial on using this template to make your own posters</title>
+    <link rel="stylesheet" href="poster.css">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
+    <!-- Based on a poster template from https://github.com/cpitclaudel/academic-poster-template -->
 
-{## Header ##}
-
-{% set poster_title = "Building your own HTML poster" %}
-{# ‘poster_subtitle’ is optional; use "" to hide it #}
-{% set poster_subtitle = "A tutorial on using this template to make your own posters" %}
-{# Change ‘venue’ to a conference or workshop name if any #}
-{% set venue = "Unpublished" %}
-{# ‘webpage_title’ is displayed in the browser’s top bar #}
-{% set webpage_title = poster_title + " — " + poster_subtitle %}
-{# ‘project_url’ is used in the footer and for the logo #}
-{% set project_url = "https://github.com/cpitclaudel/academic-poster-template" %}
-
-{# Publication info is hidden by default (.publication-info in CSS) #}
-{% set pub_datetime_iso = "2020-09-08" %}
-{% set pub_date = "September 8, 2020" %}
-
-{% block custom_head %}
-<style type="text/css">
+          <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+    
+    <style type="text/css">
   html { font-size: 1.15rem }
 </style>
-{% endblock %}
+  </head>
 
-{% block authors %}
-  {# Put authors here, with one link per author. #}
-  <a property="author">Clément Pit-Claudel<sup>a</sup></a>
-{% endblock %}
+  <body vocab="http://schema.org/" typeof="ScholarlyArticle">
+    <header role="banner">
+      <aside>
+          <a href="https://github.com/cpitclaudel/academic-poster-template"><img src="img/UOY-Logo.png" alt="Tutorial logo"></a>
+      </aside>
+      <div>
+        <h1 property="headline">Building your own HTML poster</h1>
+                  <h2 property="alternativeHeadline">A tutorial on using this template to make your own posters</h2>
+                <address>
+              <a property="author">Author<sup>a</sup></a>
+  <a property="author">Supervisor<sup>a</sup></a>
+<br />  <sup>a</sup><a property="sourceOrganization">Audio Lab, University of York</a>
+        </address>
+        <span class="publication-info">
+                      <span property="publisher">Unpublished</span>,
+            <time pubdate property="datePublished" datetime="2020-09-08">September 8, 2020</time>
+                  </span>
+      </div>
+      <aside>
+          <a href="https://csail.mit.edu"><img src="img/logo_1500px.png" alt="AudioLab Logo"></a>
+      </aside>
+    </header>
 
-{% block affiliations %}
-  <sup>a</sup><a property="sourceOrganization">MIT CSAIL</a>
-{% endblock %}
-
-{# Project logos shown on the left side #}
-{% block project_logos %}
-  <a href="{{ project_url }}"><img src="logo.svg" alt="Tutorial logo"></a>
-{% endblock %}
-
-{# Extra logos shown on the right side #}
-{% block logos %}
-  <a href="https://csail.mit.edu"><img style="background: white" src="csail.png" alt="MIT CSAIL Logo"></a>
-{% endblock %}
-
-{### Footer ##}
-
-{% block project_link %}
-  <a href="{{ project_url }}">{{ project_url }}</a>
-{% endblock %}
-
-{% block contact_information %}
-  clement.pitclaudel@live.com
-{% endblock %}
-
-{### Contents ###}
-
-{# Contents are individual boxes (typically ‘article’s or ‘figure’s).  Each
-   ‘article’ contains a header and some contents. #}
-{% block contents %}
-  <article property="abstract">
-    {# Using <h3> inside the <header> makes the structure evident to screen readers #}
-    <header><h3>Abstract</h3></header>
+    <main property="articleBody">
+        <article property="abstract">
+        <header><h3>Abstract</h3></header>
 
     <p>Academic posters are usually designed using presentation software and distributed as images or PDFs.</p>
 
@@ -86,18 +69,20 @@
   </article>
 
   <article>
-    <header><h3>Using Jinja2</h3></header>
+    <header><h3>Using Python and Jinja2</h3></header>
 
     <p>The poster is a Jinja2 template, so you can inherit from it and fill in the relevant fields and the contents.</p>
-
     <ol>
       <li>Clone the <a href="https://github.com/cpitclaudel/academic-poster-template/">GitHub repository</a>.</li>
       <li>Create your own jinja2 template, starting from <a href="https://github.com/cpitclaudel/academic-poster-template/tree/main/docs/tutorial.jinja2">this tutorial</a>.</li>
-      <li>Render to HTML using the <code>render.py</code> script:<br/>
-        <code>./render.py your_jinja2_poster.jinja output.html</code>
-      </li>
+      <li>Create a new conda environment using the provided yml file.
+      <code>conda env create -f ./environment.yml</code></li>
+      <li>Enable the the environment
+      <code>conda activate poster</code></li>
+      <li>Use the make file system to build your poster.
+      <code>make clean && make all</code></li>
     </ol>
-
+    <p>The results will be a poster.html which you can view in your browser, a poster.png and a poster.pdf that you can submit.</p>
     <b>The template for this tutorial includes documentation for each variable and block.</b>
   </article>
 
@@ -111,7 +96,6 @@
 
   <article>
     <header><h3>Block template</h3></header>
-
     <p>Each block has the following structure (fill in the italicized parts):</p>
 
     <pre>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article">article</a>&gt;
@@ -277,7 +261,19 @@
   </article>
 
   <figure style="flex-grow: 9999999">
-    <img style="width: 70%" src="logo.svg" alt="Project logo" />
+    <img style="width: 70%" src="img/logo.svg" alt="Project logo" />
     <figcaption>A stand-alone figure to fill the remaining space.</figcaption>
   </figure>
-{% endblock %}
+    </main>
+
+    <footer>
+      <address class="monospace">  <a href="https://github.com/cpitclaudel/academic-poster-template">https://github.com/cpitclaudel/academic-poster-template</a>
+</address>
+      <address class="monospace">  your.email@york.ac.uk
+</address>
+                    <span class="credits">
+          Based on an <a href="https://github.com/cpitclaudel/academic-poster-template">open poster template</a>.
+        </span>
+          </footer>
+  </body>
+</html>
