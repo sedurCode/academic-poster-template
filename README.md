@@ -1,6 +1,4 @@
-==========================================================
- A template for (more) accessible posters, using HTML+CSS
-==========================================================
+# A template for (more) accessible posters, using HTML+CSS
 
 Modern HTML+CSS is more than enough for most academic posters:
 
@@ -9,18 +7,15 @@ Modern HTML+CSS is more than enough for most academic posters:
 - Readers can adjust the font size trivially.
 - It's much more accessible than PDFs.
 
-.. image:: docs/tutorial/logo.svg
-   :align: center
+![template logo](/img/logo.svg)
 
 See it in action `on a real example <https://cpitclaudel.github.io/academic-poster-template/koika/poster.html>`__ and `follow the tutorial <https://cpitclaudel.github.io/academic-poster-template/tutorial/poster.html>`__ to create your own posters.
 
-==========
-Setting Up
-==========
+# Setting Up
 
-#. ``conda env create -f environment.yml``
-#. ``conda activate poster``
-#. ``npm install -g less``
-#. ``npm install -g puppeteer``
-#. modify source/poster.jinja2 and source/poster.less as desired
-#. ``make poster``
+- ``conda env create -f environment.yml``
+- ``conda activate poster``
+- ``npm install -g less``
+- ``npm install -g puppeteer``
+- modify poster.jinja2 and poster.less as desired
+- ``make clean && make all``
